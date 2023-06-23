@@ -1,0 +1,79 @@
+/**
+Default Style
+ */
+@import url(./vendor/normalize.css);
+@import url(./vendor/fonts/inter.css);
+@import url(./components/HeadingLevel/HeadingLevel2/HeadingLevel2.css);
+@import url(./components/HeadingLevel/HeadingLevel3/HeadingLevel3.css);
+@import url(./components/HeadingLevel/HeadingLevel4/HeadingLevel4.css);
+@import url(./components/HeadingLevel/HeadingLevel5/HeadingLevel5.css);
+@import url(components/FilterCheckbox/FilterCheckbox.css);
+
+
+/**
+App
+ */
+@import url(./components/App/App.css);
+
+/**
+Header
+ */
+@import url(./components/Header/Header.css);
+@import url(./components/Header/LogoLink/LogoLink.css);
+@import url(./components/Header/LogoImage/LogoImage.css);
+@import url(./components/Navigation/Navigation.css);
+
+
+/**
+Main
+ */
+@import url(./components/Main/Main.css);
+@import url(./components/Main/Promo/Promo.css);
+@import url(./components/Main/NavTab/NavTab.css);
+@import url(./components/Main/AboutProject/AboutProject.css);
+@import url(./components/Main/AboutProjectArticle/AboutProjectArticle.css);
+@import url(./components/Main/ProgressBar/ProgressBar.css);
+@import url(./components/Main/Techs/Techs.css);
+@import url(./components/Main/AboutMe/AboutMe.css);
+@import url(./components/Main/Portfolio/Portfolio.css);
+/**
+Footer
+ */
+@import url(./components/Footer/Footer.css);
+
+/**
+Movies
+ */
+@import url(./components/Movies/Movies.css);
+@import url(./components/SearchForm/SearchForm.css);
+@import url(./components/MoviesCardList/MoviesCardList.css);
+@import url(./components/MoviesCard/MoviesCard.css);
+@import url(./components/Movies/LoadMoreMoviesButton/LoadMoreMoviesButton.css);
+@import url(./components/SavedMovies/SavedMovies.css);
+
+
+
+/**
+Login&Register&Profile
+ */
+@import url(./components/Register/Register.css);
+@import url(./components/Login/Login.css);
+/*@import url(components/AuthForm/AuthForm.css);*/
+@import url(./components/Profile/Profiile.css);
+
+/**
+Error
+ */
+
+@import url(./components/Error/Error.css);
+
+/**
+Modal
+ */
+@import url(./components/Modal/Modal.css);
+
+/**
+Mobile Menu
+ */
+@import url(./components/MenuButton/MenuButton.css);
+@import url(./components/ModalMenuMobile/ModalMenuMobile.css);

@@ -1,0 +1,84 @@
+.movies-card {
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 16px 24px rgba(0, 0, 0, 0.05);
+}
+
+.movies-card__image {
+  border-radius: 10px 10px 0 0;
+  width: 100%;
+  max-height: 151px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.movies-card__title {
+  font-size: 13px;
+  line-height: 16px;
+  margin: 14px 0 10px 12px;
+}
+
+.movies-card__time {
+  border-radius: 0 0 10px 10px;
+  margin: 0 0 14px 12px;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  color: #a0a0a0;
+
+}
+
+.movies-card__favorite {
+  cursor: pointer;
+  box-sizing: border-box;
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  right: 12px;
+  bottom: 37px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  background-color: #f9f9f9;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .09);
+}
+
+.movies-card__favorite_active {
+  background-color: #2be080;
+}
+
+.movies-card__favorite-delete {
+  box-sizing: border-box;
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  right: 12px;
+  bottom: 37px;
+  background-image: url("../../images/ui/icon-cross.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  transition: background-color .3s ease;
+}
+
+.movies-card__favorite-delete:hover {
+  border-radius: 50%;
+  background-color: #f9f9f9;
+}
+
+@media screen and (max-width: 768px) {
+  .movies-card__image {
+    max-height: 190px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .movies-card__image {
+ max-height: 168px;
+  }
+}

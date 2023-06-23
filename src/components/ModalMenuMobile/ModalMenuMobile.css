@@ -1,0 +1,130 @@
+.modal-menu-mobile {
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transition: .3s linear;
+  z-index: 3;
+  position: fixed;
+  background-color: rgba(0, 0, 0, .3);
+  opacity: 0;
+  top: 0;
+  left: 0;
+}
+
+.modal-menu-mobile_visible {
+  pointer-events: all;
+  opacity: 1;
+}
+
+.modal-menu-mobile__button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  position: absolute;
+  right: 27px;
+  top: 27px;
+  background-image: url("../../images/ui/icon-close.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 22px;
+  height: 22px;
+}
+
+.modal-menu-mobile__container {
+  max-width: 520px;
+  margin-left: auto;
+  background-color: #ffffff;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.modal-menu-mobile__nav {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 159px;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.modal-menu-mobile__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 28px;
+}
+
+.modal-menu-mobile__link {
+  text-decoration: none;
+  color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 13px;
+  transition: opacity .3s ease;
+}
+
+.modal-menu-mobile__link:hover {
+  opacity: .7;
+}
+
+.modal-menu-mobile__link_active {
+  box-sizing: border-box;
+  padding-bottom: 4px;
+  border-bottom: 2px solid #000;
+}
+
+.modal-menu-mobile__link-profile {
+  padding-bottom: 91px;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.modal-menu-mobile__icon-profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../../images/ui/icon-profile.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 30px;
+  height: 30px;
+  background-color: #f4f4f4;
+  border-radius: 6px;
+}
+
+@media screen and (max-width: 575px) {
+  .modal-menu-mobile__button {
+    right: 18px;
+    top: 18px;
+  }
+
+  .modal-menu-mobile__nav {
+    padding-top: 144px;
+  }
+
+  .modal-menu-mobile__list {
+    row-gap: 24px;
+
+  }
+
+  .modal-menu-mobile__link_active {
+    padding-bottom: 7px;
+  }
+  .modal-menu-mobile__link-profile{
+    padding-bottom: 37px;
+  }
+}
