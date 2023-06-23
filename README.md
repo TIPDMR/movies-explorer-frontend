@@ -6,9 +6,9 @@
 
 [REST API для аутентификации пользователей и сохранения фильмов в избранном](https://github.com/TIPDMR/movies-explorer-frontend/tree/level-2)
 
-Макет Figma: `https://disk.yandex.ru/d/h6wrro-LsptWDA`
+Макет Figma: https://disk.yandex.ru/d/h6wrro-LsptWDA
 
-Адрес домена сервера: `https://api.movies.best-mesto.ru`
+Адрес домена сервера: https://api.movies.best-mesto.ru
 
 Адрес размещения фронтенда на сервере: https://movies.best-mesto.ru
 
