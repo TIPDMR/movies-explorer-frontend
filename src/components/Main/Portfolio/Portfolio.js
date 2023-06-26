@@ -16,7 +16,7 @@ const Portfolio = () => {
             Адаптивный сайт <i className="portfolio__icon-arrow"></i>
           </Link></li>
         <li className="portfolio__projects-item">
-          <Link className="portfolio__project-link" target="_blank" to="https://github.com/yandex-praktikum/react-mesto-api-full-gha">
+          <Link className="portfolio__project-link" target="_blank" to="https://github.com/TIPDMR/react-mesto-api-full-gha">
             Одностраничное приложение <i className="portfolio__icon-arrow"></i></Link>
         </li>
       </ul>
