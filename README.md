@@ -4,9 +4,9 @@
 
 Этот проект представляет собой клиентскую сторону сервиса поиска кино Movies Explorer. Он включает в себя возможности аутентификации пользователей, добавления кинофильмов в избранное и выполнения поиска по ключевым словам.
 
-[REST API для аутентификации пользователей и сохранения фильмов в избранном](https://github.com/TIPDMR/movies-explorer-frontend/tree/level-2)
+[REST API для аутентификации пользователей и сохранения фильмов в избранном](https://github.com/TIPDMR/movies-explorer-api)
 
-Макет Figma: https://disk.yandex.ru/d/h6wrro-LsptWDA
+Макет Figma: https://www.figma.com/file/MCORX7I5oijg4qtwCnVFtZ/Diploma?type=design&node-id=891-3857&mode=design
 
 Адрес домена сервера: https://api.movies.best-mesto.ru
 
