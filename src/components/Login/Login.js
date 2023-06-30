@@ -47,6 +47,10 @@ const Login = ({ summaryErrors }) => {
     e.preventDefault();
   }
 
+  function handleSelect(evt) {
+    evt.target.select();
+  }
+
   const formInputs = inputFields.map((input, index) => (
     <fieldset key={index} className={formSettingsLocal.fieldsetClassName}>
       <label className={formSettingsLocal.labelClassName}>{input.label}</label>
@@ -61,6 +65,7 @@ const Login = ({ summaryErrors }) => {
         pattern={input.pattern}
         value={inputValues[ input.name ] || ''}
         onChange={handleChange}
+        onClick={handleSelect}
         required
       />
       <span className={formSettingsLocal.textErrorClassName}>

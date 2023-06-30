@@ -45,6 +45,10 @@ const Register = ({ summaryErrors }) => {
     e.preventDefault();
   }
 
+  function handleSelect(evt) {
+    evt.target.select();
+  }
+
   const formSettingsLocal = {
     fieldsetClassName: "register__fieldset",
     labelClassName: "register__label",
@@ -71,6 +75,7 @@ const Register = ({ summaryErrors }) => {
         pattern={input.pattern}
         value={inputValues[ input.name ] || ''}
         onChange={handleChange}
+        onClick={handleSelect}
         required
       />
       <span className={formSettingsLocal.textErrorClassName}>

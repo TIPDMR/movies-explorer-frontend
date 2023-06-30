@@ -21,6 +21,10 @@ const Profile = ({ summaryErrors = "При обновлении профиля �
     setButtonEdit(!buttonEdit);
   };
 
+  function handleSelect(evt) {
+    evt.target.select();
+  }
+
   const formSettingsLocal = {
     formClassName: "profile__form",
     fieldsetClassName: "profile__fieldset",
@@ -65,6 +69,7 @@ const Profile = ({ summaryErrors = "При обновлении профиля �
         pattern={input.pattern}
         value={inputValues[ input.name ] || ''}
         onChange={handleChange}
+        onClick={handleSelect}
         required
       />
       <span className={formSettingsLocal.textErrorClassName}>
