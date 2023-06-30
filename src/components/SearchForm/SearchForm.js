@@ -31,7 +31,7 @@ const SearchForm = () => {
           onClick={handleSelect}
           required
         />
-        <button className="search-form__button"></button>
+        <button type="submit" className="search-form__button"></button>
       </div>
       <FilterCheckbox className="search-form__filter-checkbox"/>
     </form>

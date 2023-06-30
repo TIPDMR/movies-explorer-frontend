@@ -85,7 +85,7 @@ const Profile = ({ summaryErrors = "При обновлении профиля �
           :
           (
             <nav className="profile__navigation">
-              <button className="profile__button-edit" onClick={handleEditProfile}>Редактировать</button>
+              <button type="button" className="profile__button-edit" onClick={handleEditProfile}>Редактировать</button>
               <Link className="profile__link profile__link_red" to="/signout">Выйти из аккаунта</Link>
             </nav>
           )

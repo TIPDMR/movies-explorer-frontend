@@ -5,10 +5,10 @@ import LoadMoreMoviesButton from "../Movies/LoadMoreMoviesButton/LoadMoreMoviesB
 
 const MoviesCardList = ({ locationPathname }) => {
   const iconFavorite = (card) => {
-    return (<button className={`movies-card__favorite ${card.favorite ? 'movies-card__favorite_active' : ''}`}></button>);
+    return (<button type="button" className={`movies-card__favorite ${card.favorite ? 'movies-card__favorite_active' : ''}`}></button>);
   };
   const iconFavoriteDelete = (card) => {
-    return (<button className={`movies-card__favorite-delete`}></button>);
+    return (<button type="button" className={`movies-card__favorite-delete`}></button>);
   };
   return (
     <section className="movies-card-list">

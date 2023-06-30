@@ -8,7 +8,7 @@ const Error = ({ code = "404", text = "Страница не найдена" }) 
         <h1 className="error__title">{code}</h1>
         <p className="error__text">{text}</p>
       </header>
-      <button className="error__button-back" onClick={() => window.history.back()}>Назад</button>
+      <button type="button" className="error__button-back" onClick={() => window.history.back()}>Назад</button>
     </main>
   );
 };
