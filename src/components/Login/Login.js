@@ -64,8 +64,8 @@ const Login = ({ summaryErrors }) => {
         type={input.type}
         pattern={input.pattern}
         value={inputValues[ input.name ] || ''}
-        onChange={handleChange}
         onClick={handleSelect}
+        onChange={handleChange}
         required
       />
       <span className={formSettingsLocal.textErrorClassName}>

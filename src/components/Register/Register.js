@@ -40,7 +40,6 @@ const Register = ({ summaryErrors }) => {
     }
   ];
 
-
   function handleSubmit(e) {
     e.preventDefault();
   }

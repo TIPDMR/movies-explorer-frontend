@@ -36,6 +36,7 @@ const Profile = ({ summaryErrors = "При обновлении профиля �
     buttonClassName: "profile__button",
     buttonDisableClassName: "profile__button_disable"
   };
+
   const inputFields = [
     {
       name: "name",
@@ -55,6 +56,7 @@ const Profile = ({ summaryErrors = "При обновлении профиля �
       required: true
     }
   ];
+
   const formInputs = inputFields.map((input, index) => (
     <fieldset key={index} className={formSettingsLocal.fieldsetClassName}>
       <label className={formSettingsLocal.labelClassName}>{input.label}</label>
