@@ -64,26 +64,12 @@
   background-color: #fafafa;
 }
 
-
 .profile__input:focus {
   font-weight: 500;
   border-bottom-color: #3456f3;
 }
 
-.profile__button {
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 16px;
-  border: none;
-  background-color: transparent;
-  /*margin: 186px 0 0;*/
-  margin: 0;
-  cursor: pointer;
-}
 
-.profile__button_hide {
-  display: none;
-}
 
 .profile__input_error {
   color: #ee3645;
@@ -99,7 +85,7 @@
 }
 
 .profile__errors-summary {
-  margin-top: 171px;
+  margin-top: 156px;
   font-weight: 400;
   font-size: 10px;
   line-height: 12px;
@@ -109,17 +95,10 @@
 }
 
 .profile__navigation {
-  list-style: none;
   display: flex;
   flex-direction: column;
   align-items: center;
   row-gap: 16px;
-  padding: 0;
-  margin: 0;
-}
-
-.profile__navigation_hide {
-  display: none;
 }
 
 .profile__button {
@@ -134,30 +113,42 @@
   border-radius: 3px;
   cursor: pointer;
   border: none;
-  /*margin-top: 153px;*/
   transition: opacity .3s ease;
 }
-
+.profile__button:hover {
+  opacity: .8;
+}
 .profile__button_disable {
   background-color: #f8f8f8;
   color: #c2c2c2;
   cursor: default;
 }
 
-.profile__link {
+.profile__button-edit {
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  cursor: pointer;
+  transition: opacity .3s ease;
+}
+
+.profile__button-edit:hover {
+  opacity: .7;
+}
+
+.profile__link_red {
   font-weight: 400;
   font-size: 13px;
   line-height: 16px;
   text-decoration: none;
-  color: #000;
   transition: opacity .3s ease;
-}
-
-.profile__link-red {
   color: #ee3645;
 }
 
-.profile__link:hover {
+.profile__link_red:hover {
   opacity: .7;
 }
 
@@ -171,7 +162,7 @@
   }
 
   .profile__errors-summary {
-    margin-top: 163px;
+    margin-top: 147px;
   }
 }
 
@@ -186,12 +177,17 @@
   }
 
 
-  .profile__link {
+  .profile__link_red {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .profile__button-edit {
     font-size: 12px;
     line-height: 15px;
   }
 
   .profile__errors-summary {
-    margin-top: 332px;
+    margin-top: 316px;
   }
 }

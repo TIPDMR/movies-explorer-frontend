@@ -42,6 +42,7 @@
 }
 
 .footer__link {
+
   text-decoration: none;
   color: black;
   font-size: 13px;
@@ -59,8 +60,8 @@
 
   }
 
-  .footer__container {
-
+  .footer__link {
+    display: block;
   }
 }
 
@@ -84,7 +85,7 @@
   .footer__links {
     flex-direction: column;
     align-items: center;
-    row-gap: 8px;
+    row-gap: 12px;
   }
 
   .footer__copyright {

@@ -18,7 +18,7 @@
 }
 
 .portfolio__projects-item {
-  padding: 0 0 20px;
+  padding: 0 0 19px;
   margin: 0 0 20px;
   border-bottom: 1px solid #E8E8E8;
 }
@@ -69,13 +69,16 @@
     line-height: 50px;
   }
 
+  .portfolio__projects-item {
 
+  }
 }
 
 @media screen and (max-width: 575px) {
   .portfolio {
     padding: 70px 14px;
   }
+
 
   .portfolio__title {
     font-size: 14px;

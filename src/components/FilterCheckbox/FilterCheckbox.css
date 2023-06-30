@@ -5,6 +5,7 @@
 }
 
 .filter-checkbox__checkbox {
+  box-sizing: border-box;
   appearance: none;
   position: relative;
   display: inline-block;

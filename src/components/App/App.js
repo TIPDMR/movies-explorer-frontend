@@ -10,6 +10,7 @@ import Login from "../Login/Login";
 import Profile from "../Profile/Profile";
 import Error from "../Error/Error";
 import ModalMenuMobile from "../ModalMenuMobile/ModalMenuMobile";
+import { CurrentUser } from "../../contexts/CurrentUser";
 
 function App() {
   const location = useLocation();
@@ -18,6 +19,7 @@ function App() {
   const [headerHide, setHeaderHide] = useState(true);
   const [footerHide, setFooterHide] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
 
   const authRoutesPathsArrayHeader = ['/profile', '/movies', '/saved-movies'];
   const knownRoutesPathsArrayHeader = ['/', '/movies', '/saved-movies', '/profile'];
@@ -50,20 +52,22 @@ function App() {
     setIsOpenMenuMobile(!isOpenMenuMobile);
   };
 
-  return (<div className="app">
-    {headerHide ? null : <Header loggedIn={loggedIn} clickOpenMenuMobile={handleOpenMenuMobile}/>}
-    <Routes>
-      <Route path="/" element={<Main/>}/>
-      <Route path="/signup" element={<Register/>}/>
-      <Route path="/signin" element={<Login/>}/>
-      <Route path="/profile" element={<Profile/>}/>
-      <Route path="/movies" element={<Movies locationPathname={location.pathname} isLoading={isLoading}/>}/>
-      <Route path="/saved-movies" element={<SavedMovies locationPathname={location.pathname}/>}/>
-      <Route path="*" element={<Error code="404" text="Страница не найдена"/>}/>
-    </Routes>
-    {footerHide ? null : <Footer/>}
-    {!loggedIn ? null : <ModalMenuMobile onCloseClickOverlay={onCloseClickOverlay} isOpen={isOpenMenuMobile} onClose={handleOpenMenuMobile}/>}
-  </div>);
+  return (<CurrentUser.Provider value={currentUser}>
+    <div className="app">
+      {headerHide ? null : <Header loggedIn={loggedIn} clickOpenMenuMobile={handleOpenMenuMobile}/>}
+      <Routes>
+        <Route path="/" element={<Main/>}/>
+        <Route path="/signup" element={<Register/>}/>
+        <Route path="/signin" element={<Login/>}/>
+        <Route path="/profile" element={<Profile/>}/>
+        <Route path="/movies" element={<Movies locationPathname={location.pathname} isLoading={isLoading}/>}/>
+        <Route path="/saved-movies" element={<SavedMovies locationPathname={location.pathname}/>}/>
+        <Route path="*" element={<Error code="404" text="Страница не найдена"/>}/>
+      </Routes>
+      {footerHide ? null : <Footer/>}
+      {!loggedIn ? null : <ModalMenuMobile onCloseClickOverlay={onCloseClickOverlay} isOpen={isOpenMenuMobile} onClose={handleOpenMenuMobile}/>}
+    </div>
+  </CurrentUser.Provider>);
 }
 
 export default App;

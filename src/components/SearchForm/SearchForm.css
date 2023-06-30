@@ -16,6 +16,10 @@
   padding-bottom: 13px;
 }
 
+.search-form__container:focus-within {
+  border-bottom: 1px solid #3456f3;
+}
+
 .search-form__movie-input {
   box-sizing: border-box;
   font-size: 28px;
@@ -25,6 +29,7 @@
   outline: none;
   background: transparent;
   border: none;
+  padding: 0;
 }
 
 .search-form__button {

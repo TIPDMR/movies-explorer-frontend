@@ -29,7 +29,7 @@ const Profile = ({ summaryErrors = "При обновлении профиля �
     inputErrorClassName: "profile__input_error",
     textErrorClassName: "profile__input-text-error",
     summaryErrorClassName: "profile__errors-summary",
-    buttonClassName: buttonEdit ? "profile__button" : "profile__button profile__button_hide",
+    buttonClassName: "profile__button",
     buttonDisableClassName: "profile__button_disable"
   };
   const inputFields = [
@@ -78,14 +78,20 @@ const Profile = ({ summaryErrors = "При обновлении профиля �
       <form className={formSettingsLocal.formClassName} onSubmit={handleSubmit} action="#">
         {formInputs}
         <span className={formSettingsLocal.summaryErrorClassName}>{buttonEdit && summaryErrors}</span>
-        <button disabled={!inputValid} type="submit" className={`${!inputValid && formSettingsLocal.buttonDisableClassName} ${formSettingsLocal.buttonClassName}`}>
-          Сохранить
-        </button>
+        {buttonEdit ?
+          (<button disabled={!inputValid} type="submit" className={`${formSettingsLocal.buttonClassName} ${inputValid ? '' : formSettingsLocal.buttonDisableClassName}`}>
+            Сохранить
+          </button>)
+          :
+          (
+            <nav className="profile__navigation">
+              <button className="profile__button-edit" onClick={handleEditProfile}>Редактировать</button>
+              <Link className="profile__link profile__link_red" to="/signout">Выйти из аккаунта</Link>
+            </nav>
+          )
+        }
+
       </form>
-      <ul className={`${buttonEdit ? "profile__navigation profile__navigation_hide" : "profile__navigation"}`}>
-        <li><Link className="profile__link" to="#" onClick={handleEditProfile}>Редактировать</Link></li>
-        <li><Link className="profile__link profile__link-red" to="/signout">Выйти из аккаунта</Link></li>
-      </ul>
     </main>
   );
 };

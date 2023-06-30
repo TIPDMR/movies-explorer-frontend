@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
 const SearchForm = () => {
-  const [value, setValue] = useState('Фильм');
+  const [value, setValue] = useState('');
 
   function handleSubmit(evt) {
     evt.preventDefault();
@@ -13,6 +13,9 @@ const SearchForm = () => {
     evt.preventDefault();
   }
 
+  function handleSelect(evt) {
+    evt.target.select();
+  }
 
   return (
     <form className="search-form" onSubmit={handleSubmit}>
@@ -25,6 +28,7 @@ const SearchForm = () => {
           type="text"
           value={value}
           onChange={handleChange}
+          onClick={handleSelect}
           required
         />
         <button className="search-form__button"></button>

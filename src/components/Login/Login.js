@@ -78,7 +78,7 @@ const Login = ({ summaryErrors }) => {
       <form className={formSettingsLocal.formClassName} onSubmit={handleSubmit} action="#">
         {formInputs}
         <span className={formSettingsLocal.summaryErrorClassName}>{summaryErrors}</span>
-        <button disabled={!inputValid} type="submit" className={`${!inputValid && formSettingsLocal.buttonDisableClassName} ${formSettingsLocal.buttonClassName}`}>Войти</button>
+        <button disabled={!inputValid} type="submit" className={`${inputValid ? '' : formSettingsLocal.buttonDisableClassName} ${formSettingsLocal.buttonClassName}`}>Войти</button>
       </form>
       <div className="login__question-text">Ещё не зарегистрированы?
         <Link to="/signup" className="login__question-link">Регистрация</Link>

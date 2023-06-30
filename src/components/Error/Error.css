@@ -5,9 +5,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 700px;
-  /*padding-bottom: 60px;*/
-  /*height: 100vh;*/
+  /*min-height: 700px;*/
+  height: 100vh;
 }
 
 .error__header {
@@ -32,8 +31,8 @@
 }
 
 .error__button-back {
-  margin-top: 184px;
-  /*margin-bottom: 60px;*/
+  margin-top: auto;
+  margin-bottom: 60px;
   background: none;
   color: #3456f3;
   border: none;
@@ -53,7 +52,7 @@
   }
 
   .error__button-back {
-    margin-top: 184px;
+    margin-bottom: 222px;
   }
 }
 
@@ -78,8 +77,8 @@
   }
 
   .error__button-back {
-    margin-top: 284px;
-    margin-bottom: 30px;
+    /*margin-top: 284px;*/
+    margin-bottom: 20px;
     font-size: 12px;
     line-height: 15px;
   }

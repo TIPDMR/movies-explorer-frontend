@@ -18,7 +18,7 @@ const Register = ({ summaryErrors }) => {
       label: "Имя",
       placeholder: "Имя",
       type: "text",
-      pattern: "[a-zA-Zа-яА-ЯёЁ]{3,30}",
+      pattern: "[a-zA-Zа-яА-ЯёЁ-]{3,30}",
       required: true
     },
     {
@@ -89,7 +89,7 @@ const Register = ({ summaryErrors }) => {
       <form className={formSettingsLocal.formClassName} onSubmit={handleSubmit} action="#">
         {formInputs}
         <span className={formSettingsLocal.summaryErrorClassName}>{summaryErrors}</span>
-        <button disabled={!inputValid} type="submit" className={`${!inputValid && formSettingsLocal.buttonDisableClassName} ${formSettingsLocal.buttonClassName}`}>
+        <button disabled={!inputValid} type="submit" className={`${inputValid ? '' : formSettingsLocal.buttonDisableClassName} ${formSettingsLocal.buttonClassName}`}>
           Зарегистрироваться
         </button>
       </form>
