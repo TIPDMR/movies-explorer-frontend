@@ -1,9 +1,3 @@
-const DEFAULT_ERRORS_TEXTS = {
-  404: "Страница по указанному маршруту не найдена.",
-  400: "Не правильный запрос к серверу.",
-  500: "На сервере произошла ошибка."
-};
-
 const REGISTRATION_ERRORS_TEXTS = {
   409: "Пользователь с таким email уже существует.",
   404: "Страница по указанному маршруту не найдена.",
@@ -21,7 +15,4 @@ const PROFILE_ERRORS_TEXTS = {
   500: 'При обновлении профиля произошла ошибка.',
 };
 
-// 1. Вы ввели неправильный логин или пароль.
-// 2. При авторизации произошла ошибка. Токен не передан или передан не в том формате.
-// 3. При авторизации произошла ошибка. Переданный токен некорректен.
-export { REGISTRATION_ERRORS_TEXTS, DEFAULT_ERRORS_TEXTS, LOGIN_ERRORS_TEXTS, PROFILE_ERRORS_TEXTS };
+export { REGISTRATION_ERRORS_TEXTS, LOGIN_ERRORS_TEXTS, PROFILE_ERRORS_TEXTS };
