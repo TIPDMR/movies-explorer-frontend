@@ -1,0 +1,22 @@
+.about-project {
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  padding: 110px 70px;
+}
+
+@media screen and (max-width: 768px) {
+  .about-project {
+    padding: 90px 50px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .about-project {
+    padding: 70px 18px;
+  }
+
+
+}

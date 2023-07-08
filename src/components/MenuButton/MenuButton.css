@@ -1,0 +1,26 @@
+.menu-button {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .menu-button {
+    background-image: url(../../images/ui/icon-menu-button.svg);
+    display: flex;
+    width: 44px;
+    height: 44px;
+    border: none;
+    background-color: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin-left: auto;
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .menu-button {
+    width: 40px;
+    height: 40px;
+  }
+}
