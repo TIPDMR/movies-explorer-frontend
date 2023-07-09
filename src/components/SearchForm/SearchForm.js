@@ -17,11 +17,6 @@ const SearchForm = ({ onSearchMovies, onResetFormFavoriteMovies }) => {
     const localStorageKey = location.pathname === "/movies" ? "inputValuesMovies" : "inputValuesFavoriteMovies";
     const parseValue = JSON.parse(localStorage.getItem(localStorageKey)) || {};
     resetForm(parseValue);
-    // setState({
-    //   inputValues: parseValue,
-    //   inputErrors: {},
-    //   inputValid: false
-    // });
   }, [location.pathname]);
 
 
