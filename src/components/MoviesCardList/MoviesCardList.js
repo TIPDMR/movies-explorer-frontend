@@ -16,7 +16,7 @@ import {
 } from "../../constants/constMovies";
 import { useResize } from "../../hooks/useResize";
 
-const MoviesCardList = ({ movieList, onAddMovieFavorite, onDeleteMovieFavorite, isNewSearch, onIsNewSearch }) => {
+const MoviesCardList = ({ movieList, onAddMovieFavorite, onDeleteMovieFavorite, isNewSearch, onIsNewSearch, isFavoriteSearchMovieList }) => {
   const location = useLocation();
   //Количество карточек подгружаемых при первом рендере
   const [loadLimitMoviesRender, setLoadLimitMoviesRender] = useState(0);//16
@@ -25,7 +25,19 @@ const MoviesCardList = ({ movieList, onAddMovieFavorite, onDeleteMovieFavorite, 
   //Карточки, которые подгружаем
   const [renderMovies, setRenderMovies] = useState([]);
 
+  const [rememberSearch, setRememberSearch] = useState(false);
+
   const { width } = useResize();
+
+  useEffect(() => {
+    const localStorageKey = location.pathname === "/movies" ? "inputValuesMovies" : "inputValuesFavoriteMovies";
+    const parseValue = JSON.parse(localStorage.getItem(localStorageKey)) || {};
+    if (parseValue?.hasOwnProperty("search-form__movie") && renderMovies && renderMovies.length === 0) {
+      setRememberSearch(true);
+    } else {
+      setRememberSearch(false);
+    }
+  }, [renderMovies, isFavoriteSearchMovieList]);
 
   useEffect(() => {
     if (width >= SCREEN_XL) {
@@ -37,7 +49,7 @@ const MoviesCardList = ({ movieList, onAddMovieFavorite, onDeleteMovieFavorite, 
     } else if (width < SCREEN_LG && width >= SCREEN_MD) {
       setLoadLimitMoviesRender(MOVIES_TO_RENDER_COUNT_MD);//8
       setLoadedMoviesCount(MOVIES_TO_ADD_COUNT_SM);//2
-    }else {
+    } else {
       setLoadLimitMoviesRender(MOVIES_TO_RENDER_COUNT_SM);//5
       setLoadedMoviesCount(MOVIES_TO_ADD_COUNT_SM);//2
     }
@@ -59,16 +71,23 @@ const MoviesCardList = ({ movieList, onAddMovieFavorite, onDeleteMovieFavorite, 
     localStorage.setItem('countRenderMovie', JSON.stringify(renderMovies.length + loadedMoviesCount));
     setRenderMovies(movieList.slice(0, renderMovies.length + loadedMoviesCount));
   };
-
   return (
     <section className="movies-card-list">
-      {renderMovies.length !== 0 ? (<ul className="movies-card-list__items">
-        {renderMovies.map((movie) => (
-          <li className="movies-card-list__item" key={movie.id || movie.movieId}>
-            <MoviesCard onDeleteMovieFavorite={onDeleteMovieFavorite} onAddMovieFavorite={onAddMovieFavorite} movie={movie}/>
-          </li>
-        ))}
-      </ul>) : (<p className="movies-card-list__error">Ничего не найдено</p>)}
+      {(() => {
+        if (renderMovies && renderMovies.length !== 0) {
+          return (<ul className="movies-card-list__items">
+            {renderMovies.map((movie) => (
+              <li className="movies-card-list__item" key={movie.id || movie.movieId}>
+                <MoviesCard onDeleteMovieFavorite={onDeleteMovieFavorite} onAddMovieFavorite={onAddMovieFavorite} movie={movie}/>
+              </li>
+            ))}
+          </ul>);
+        } else if (renderMovies && renderMovies.length === 0 && rememberSearch) {
+          return (<p className="movies-card-list__error">Ничего не найдено</p>);
+        } else {
+          return "";
+        }
+      })()}
       {location.pathname === '/movies' && renderMovies.length > 3 && renderMovies.length < movieList.length ? (
         <LoadMoreMoviesButton onLoadMovies={handleLoadMovies}/>
       ) : null}

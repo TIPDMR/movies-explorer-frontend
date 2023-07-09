@@ -2,6 +2,7 @@ import React from 'react';
 import useValidation from "../../hooks/useValidation";
 import LogoLink from "../Header/LogoLink/HeaderLogo";
 import { Link } from "react-router-dom";
+import { EMAIL_PATTERN } from "../../constants/constPattern";
 
 const Login = ({ summaryErrors, onLogin, isLoading, isLoggedIn }) => {
   const {
@@ -18,6 +19,7 @@ const Login = ({ summaryErrors, onLogin, isLoading, isLoggedIn }) => {
       label: "E-mail",
       placeholder: "E-mail",
       type: "email",
+      pattern: EMAIL_PATTERN,
       required: true
     },
     {
@@ -84,7 +86,8 @@ const Login = ({ summaryErrors, onLogin, isLoading, isLoggedIn }) => {
       <form className={formSettingsLocal.formClassName} onSubmit={handleSubmit} action="#">
         {formInputs}
         <span className={formSettingsLocal.summaryErrorClassName}>{summaryErrors}</span>
-        <button disabled={isLoading || !inputValid}
+        <button
+          disabled={isLoading || !inputValid}
           type="submit"
           className={`${!isLoggedIn && (!isLoading && inputValid) ? '' : formSettingsLocal.buttonDisableClassName} ${formSettingsLocal.buttonClassName}`}>
           Войти

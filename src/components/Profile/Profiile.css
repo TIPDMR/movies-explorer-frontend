@@ -144,6 +144,7 @@
 
 .profile__button_disable {
   opacity: .7;
+  cursor: default;
 }
 
 .profile__button_red {

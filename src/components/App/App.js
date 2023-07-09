@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useState } from 'react';
-import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import React, { useCallback, useEffect, useState } from 'react';
+import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
@@ -40,8 +40,6 @@ function App() {
   const [resultSearchFavoriteMovieList, setResultSearchFavoriteMovieList] = useState([]);
   const [isFavoriteSearchMovieList, setIsSearchFavoriteMovieList] = useState(false);
 
-  const [inputValues, setInputValues] = useState({});
-
   const [isNewSearch, setIsNewSearch] = useState(false);
 
   const knownRoutesPathsArrayHeader = ['/', '/movies', '/saved-movies', '/profile'];
@@ -50,45 +48,43 @@ function App() {
   useEffect(() => {
     MainApi.getUserInfo().then((res) => {
       if (res && res.email) {
-        setIsLoggedIn(true);
-        setCurrentUser({ email: res.email, name: res.name, _id: res._id });
+        handleAuthorization(res.email, res.name, res._id);
         navigate(location.pathname);
       }
     }).catch((err) => console.log(err));
   }, []);
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      const localStorageKey = location.pathname === "/movies" ? "inputValuesMovies" : "inputValuesFavoriteMovies";
-      const parseValue = JSON.parse(localStorage.getItem(localStorageKey)) || {};
-      setInputValues(parseValue);
+  const getAllMovies = () => {
+    let localFavoriteMovieList = JSON.parse(localStorage.getItem("favoriteMovieList")) || [];
+    const localResultSearchMovieList = JSON.parse(localStorage.getItem('resultSearchMovieList')) || [];
+    setResultSearchMovieList(localResultSearchMovieList);
+
+    if (localFavoriteMovieList.length === 0) {
+      MainApi.getMoviesFavorite().then((res) => {
+        localFavoriteMovieList = res;
+        localStorage.setItem('favoriteMovieList', JSON.stringify(res));
+        setFavoriteMovieList(res);
+      }).catch(() => {
+        setTooltipTyperError("error");
+        setTooltipText('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз!');
+        setIsTooltipPopupOpen(true);
+      });
+    } else {
+      setFavoriteMovieList(localFavoriteMovieList);
     }
-  }, [location.pathname]);
 
-  useEffect(() => {
-    if (isLoggedIn) {
+    const parseValue = JSON.parse(localStorage.getItem("inputValuesFavoriteMovies")) || {};
+    const inputValueCheckbox = parseValue[ "filter-checkbox__checkbox" ] || false;
+    const inputValueSearchText = parseValue[ "search-form__movie" ] || "";
 
-      const localFavoriteMovieList = JSON.parse(localStorage.getItem("favoriteMovieList")) || [];
-      const localResultSearchMovieList = JSON.parse(localStorage.getItem('resultSearchMovieList')) || [];
-      setResultSearchMovieList(localResultSearchMovieList);
-
-      if (localFavoriteMovieList.length === 0) {
-        handleGetFavoriteMovieList();
-      } else {
-        setFavoriteMovieList(localFavoriteMovieList);
-      }
-
-      if (localFavoriteMovieList.length > 0) {
-        const localResultSearchFavoriteMovieList = JSON.parse(localStorage.getItem('resultSearchFavoriteMovieList')) || [];
-        if (localResultSearchFavoriteMovieList.length > 0 || (inputValues[ "inputValuesFavoriteMovies" ]?.[ "filter-checkbox__checkbox" ] || inputValues[ "inputValuesFavoriteMovies" ]?.[ "search-form__movie" ])) {
-          setResultSearchFavoriteMovieList(localResultSearchFavoriteMovieList);
-          setIsSearchFavoriteMovieList(true);
-        }
+    if (localFavoriteMovieList.length > 0) {
+      const localResultSearchFavoriteMovieList = JSON.parse(localStorage.getItem('resultSearchFavoriteMovieList')) || [];
+      if (localResultSearchFavoriteMovieList.length > 0 || (inputValueCheckbox || inputValueSearchText.length > 0)) {
+        setResultSearchFavoriteMovieList(localResultSearchFavoriteMovieList);
+        setIsSearchFavoriteMovieList(true);
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLoggedIn]);
-
+  };
 
   /**
    * Закрытие всех модальных окон
@@ -114,6 +110,7 @@ function App() {
   const handleAuthorization = (email, name, _id) => {
     setIsLoggedIn(true);
     setCurrentUser({ email, name, _id });
+    getAllMovies();
   };
 
   /**
@@ -173,25 +170,27 @@ function App() {
   /**
    * Выход пользователя из системы
    */
-  const handleSignOut = () => {
+  const handleSignOut = useCallback(() => {
     MainApi.signOut().then((res) => {
       setIsLoggedIn(false);
       clearData();
       navigate('/', { replace: true });
     })
       .catch((err) => console.log(err));
-  };
+  }, []);
 
   /**
    * Удаление всех данных
    * @type {(function(): void)|*}
    */
-  const clearData = useCallback(() => {
+  const clearData = () => {
     setCurrentUser({});
     setResultSearchMovieList([]);
     setFavoriteMovieList([]);
+    setResultSearchFavoriteMovieList([]);
+    setIsSearchFavoriteMovieList(false);
     localStorage.clear();
-  }, []);
+  };
 
   /**
    * Обновление профиля пользователя
@@ -204,7 +203,7 @@ function App() {
       setTooltipTyperError("success");
       setTooltipText('Вы успешно обновили профиль!');
       setButtonEditProfile(false);
-      navigate('/movies', { replace: true });
+      navigate(location.pathname, { replace: true });
     })
       .catch((err) => {
         setTooltipTyperError("error");
@@ -252,20 +251,6 @@ function App() {
       setResultSearchMovieList(localResultSearchMovieList);
       setIsLoading(false);
     }
-  };
-
-  /**
-   * Получаем список избранных фильмов с сервера
-   */
-  const handleGetFavoriteMovieList = () => {
-    MainApi.getMoviesFavorite().then((res) => {
-      localStorage.setItem('favoriteMovieList', JSON.stringify(res));
-      setFavoriteMovieList(res);
-    }).catch(() => {
-      setTooltipTyperError("error");
-      setTooltipText('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз!');
-      setIsTooltipPopupOpen(true);
-    });
   };
 
   /**
@@ -345,8 +330,8 @@ function App() {
       const localMarkedResultSearchMovieList = markedFavoriteMovieList(localResultSearchMovieList, localCombinedFavoriteMoviesList);
       localStorage.setItem('resultSearchMovieList', JSON.stringify(localMarkedResultSearchMovieList));
       setResultSearchMovieList(localMarkedResultSearchMovieList);
-      if (isFavoriteSearchMovieList) {
-        const localResultSearchFavoriteMovieList = JSON.parse(localStorage.getItem('resultSearchFavoriteMovieList')) || [];
+      const localResultSearchFavoriteMovieList = JSON.parse(localStorage.getItem('resultSearchFavoriteMovieList')) || [];
+      if (localResultSearchFavoriteMovieList) {
         const localCombinedSearchFavoriteMoviesList = localResultSearchFavoriteMovieList.filter((movie) => {
           return movie.movieId !== idMovie;
         });
@@ -368,7 +353,7 @@ function App() {
    */
   const handleSearchFavoriteMovies = (searchText, stateCheckbox) => {
     setIsLoading(true);
-    const localFavoriteMovieList = JSON.parse(localStorage.getItem("favoriteMovieList"));
+    const localFavoriteMovieList = JSON.parse(localStorage.getItem("favoriteMovieList")) || [];
     const localResultSearchFavoriteMovieList = searchMovies(localFavoriteMovieList, searchText, stateCheckbox);
     localStorage.setItem('resultSearchFavoriteMovieList', JSON.stringify(localResultSearchFavoriteMovieList));
     setResultSearchFavoriteMovieList(localResultSearchFavoriteMovieList);
@@ -394,8 +379,8 @@ function App() {
       {!knownRoutesPathsArrayHeader.includes(location.pathname) ? null : <Header isLoggedIn={isLoggedIn} clickOpenMenuMobile={handleOpenMenuMobile}/>}
       <Routes>
         <Route path="/" element={<Main/>}/>
-        <Route path="/signup" element={<Register isLoading={isLoading} isLoggedIn={isLoggedIn} onRegister={handleRegister}/>}/>
-        <Route path="/signin" element={<Login isLoggedIn={isLoggedIn} isLoading={isLoading} onLogin={handleLogin}/>}/>
+        <Route path="/signup" element={!isLoggedIn ? <Register isLoading={isLoading} isLoggedIn={isLoggedIn} onRegister={handleRegister}/> : <Navigate to="/"/>}/>
+        <Route path="/signin" element={!isLoggedIn ? <Login isLoggedIn={isLoggedIn} isLoading={isLoading} onLogin={handleLogin}/> : <Navigate to="/movies"/>}/>
         <Route
           path="/profile"
           element={<ProtectedRoute
@@ -421,7 +406,6 @@ function App() {
             onSearchMovies={handleSearchMovies}
             isNewSearch={isNewSearch}
             onIsNewSearch={setIsNewSearch}
-            isInputValues={inputValues}
             isLoggedIn={isLoggedIn}
           />}
         />
@@ -435,11 +419,11 @@ function App() {
             onSearchMovies={handleSearchFavoriteMovies}
             onResetFormFavoriteMovies={handleResetFormFavoriteMovies}
             isLoading={isLoading}
-            isInputValues={inputValues}
             isLoggedIn={isLoggedIn}
+            isFavoriteSearchMovieList={isFavoriteSearchMovieList}
           />}
         />
-        <Route path="*" element={<Error code="404" text="Страница не найдена"/>}/>
+        <Route path="*" element={<Error code="404" text="Страница не найдена" isLoggedIn={isLoggedIn}/>}/>
       </Routes>
       {!knownRoutesPathsArrayFooter.includes(location.pathname) ? null : <Footer/>}
       {!isLoggedIn ? null : <ModalMenuMobile onCloseClickOverlay={handleCloseAllPopups} isOpen={isOpenMenuMobile} onClose={handleCloseAllPopups}/>}

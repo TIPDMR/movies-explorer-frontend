@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import useValidation from "../../hooks/useValidation";
 import { CurrentUser } from '../../contexts/CurrentUser';
+import { EMAIL_PATTERN, NAME_PATTERN } from "../../constants/constPattern";
 
 const Profile = (
   {
@@ -10,24 +11,25 @@ const Profile = (
     isButtonEditProfile,
     onButtonEditProfile
   }) => {
-
-  const { name, email } = useContext(CurrentUser);
+  const currentUser = useContext(CurrentUser);
   const {
     inputValues,
     inputErrors,
     inputValid,
-    handleChange
+    handleChange,
+    resetForm,
   } = useValidation();
 
   useEffect(() => {
-    inputValues[ 'name' ] = name;
-    inputValues[ 'email' ] = email;
-    return () => {
-      inputValues[ 'name' ] = '';
-      inputValues[ 'email' ] = '';
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [name, email]);
+    if (currentUser)
+      resetForm(currentUser);
+  }, [currentUser, resetForm]);
+
+  useEffect(() => {
+    if (inputValues.name === currentUser.name && inputValues.email === currentUser.email) {
+      resetForm(inputValues, {}, false);
+    }
+  }, [inputValues]);
 
   function handleSubmit(evt) {
     evt.preventDefault();
@@ -65,7 +67,7 @@ const Profile = (
       label: "Имя",
       placeholder: "Имя",
       type: "text",
-      pattern: "[a-zA-Zа-яА-Я\\-\\s]{3,30}",
+      pattern: NAME_PATTERN,
       required: true
     },
     {
@@ -74,6 +76,7 @@ const Profile = (
       label: "E-mail",
       placeholder: "E-mail",
       type: "email",
+      pattern: EMAIL_PATTERN,
       required: true
     }
   ];
@@ -102,7 +105,7 @@ const Profile = (
   ));
   return (
     <main className="profile">
-      <h1 className="profile__title">Привет, {name}!</h1>
+      <h1 className="profile__title">Привет, {currentUser.name}!</h1>
       <form className={formSettingsLocal.formClassName} onSubmit={handleSubmit} action="#">
         {formInputs}
         <div className="profile__container-buttons">

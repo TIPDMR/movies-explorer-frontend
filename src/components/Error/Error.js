@@ -1,11 +1,13 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
 
-const Error = ({ code = "404", text = "Страница не найдена" }) => {
+const Error = ({ code = "404", text = "Страница не найдена", isLoggedIn }) => {
 
   const navigate = useNavigate();
 
-  const goBack = () => navigate(-1);
+  const goBack = () => {
+    isLoggedIn ? navigate(-3) : navigate(-1);
+  };
 
   return (
     <main className="error">

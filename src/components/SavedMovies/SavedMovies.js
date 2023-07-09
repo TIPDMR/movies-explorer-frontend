@@ -2,7 +2,7 @@ import React from 'react';
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
-const SavedMovies = ({ isMovieList, onDeleteMovieFavorite, onSearchMovies, onResetFormFavoriteMovies,isInputValues, }) => {
+const SavedMovies = ({ isMovieList, onDeleteMovieFavorite, onSearchMovies, onResetFormFavoriteMovies, isInputValues, isFavoriteSearchMovieList }) => {
 
   return (
     <main className="saved-movies">
@@ -11,7 +11,7 @@ const SavedMovies = ({ isMovieList, onDeleteMovieFavorite, onSearchMovies, onRes
         onResetFormFavoriteMovies={onResetFormFavoriteMovies}
         isInputValues={isInputValues}
       />
-      <MoviesCardList movieList={isMovieList} onDeleteMovieFavorite={onDeleteMovieFavorite}/>
+      <MoviesCardList movieList={isMovieList} onDeleteMovieFavorite={onDeleteMovieFavorite} isFavoriteSearchMovieList={isFavoriteSearchMovieList}/>
     </main>
   );
 };

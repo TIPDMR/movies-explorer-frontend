@@ -1,21 +1,16 @@
 /**
  * Поиск фильма по критериям
- * @param moviesList
+ * @param movieList
  * @param searchText
  * @param duration
  * @returns {*}
  */
-export const searchMovies = (moviesList, searchText, duration) => {
-  return moviesList?.filter((movie) => {
-    const hasSearchText = Object.keys(movie).some((key) => {
+export const searchMovies = (movieList, searchText, duration) => {
+  const normalizedSearchText = searchText.toLowerCase();
 
-      return typeof movie[ key ] === 'string' &&
-        key !== 'created_at' &&
-        key !== 'id' &&
-        key !== 'updated_at' &&
-        movie[ key ].toLowerCase().includes(searchText.toLowerCase());
-    });
-
+  return movieList?.filter((movie) => {
+    const movieName = movie.nameRU.toLowerCase().trim();
+    const hasSearchText = movieName.includes(normalizedSearchText);
     return duration ? hasSearchText && movie.duration <= 40 : hasSearchText;
   });
 };

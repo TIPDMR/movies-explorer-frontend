@@ -2,11 +2,11 @@ import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Preloader from "../Preloader/Preloader";
 
-const Movies = ({ isLoading, onSearchMovies, isMovieList, onAddMovieFavorite, onDeleteMovieFavorite, isNewSearch, onIsNewSearch,isInputValues }) => {
+const Movies = ({ isLoading, onSearchMovies, isMovieList, onAddMovieFavorite, onDeleteMovieFavorite, isNewSearch, onIsNewSearch }) => {
 
   return (
     <main className="movies">
-      <SearchForm onSearchMovies={onSearchMovies} isInputValues={isInputValues}/>
+      <SearchForm onSearchMovies={onSearchMovies}/>
       {isLoading ?
         (<Preloader/>) :
         (<MoviesCardList

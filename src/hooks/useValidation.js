@@ -22,11 +22,11 @@ function useValidation() {
   }, [state, setState]);
 
   const resetForm = useCallback(
-    () => {
+    (inputValues = {}, inputErrors = {}, inputValid = false) => {
       setState({
-        inputValues: {},
-        inputErrors: {},
-        inputValid: false,
+        inputValues: inputValues,
+        inputErrors: inputErrors,
+        inputValid: inputValid,
       });
     },
     [setState]
