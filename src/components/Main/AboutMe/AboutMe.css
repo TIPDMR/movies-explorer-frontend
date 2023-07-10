@@ -53,6 +53,13 @@
 
 .about-me__photo {
   margin: 0;
+  width: 270px;
+  max-height: 327px;
+  object-position: center;
+  object-fit: cover;
+  border-radius: 10px;
+  align-self: center;
+  height: 100%;
 }
 
 @media screen and (max-width: 768px) {
