@@ -22,13 +22,13 @@ ___
 
 2. Установка зависимостей проекта. У вас должен быть установлен **NodeJS** и **NPM**
 
-```cd movies-explorer-frontend npm install```
+```cd movies-explorer-frontend && npm install```
 
 3. Настройка URI адреса Backend части
 
-  1. Откройте файл `src/constants/constApiUri.js`
+    1. Откройте файл `src/constants/constApiUri.js`
 
-  2. Измените переменную `MAIN_API_URI` на адрес сервера где установлен [Movies REST API](https://github.com/TIPDMR/movies-explorer-api)
+    2. Измените переменную `MAIN_API_URI` на адрес сервера где установлен [Movies REST API](https://github.com/TIPDMR/movies-explorer-api)
 
 4. Запуск проекта
 
