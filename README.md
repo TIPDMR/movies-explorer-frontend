@@ -46,7 +46,7 @@ ___
 
 <https://www.figma.com/file/MCORX7I5oijg4qtwCnVFtZ/Diploma?type=design&node-id=891-3857&mode=design>
 
-### Backend на github:
+### Backend на Github:
 Этот API обеспечивает функциональность поиска фильмов и управления пользовательскими коллекциями.
 
 <https://github.com/TIPDMR/movies-explorer-api>
