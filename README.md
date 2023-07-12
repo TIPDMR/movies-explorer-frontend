@@ -1,18 +1,62 @@
 # Movies Explorer Frontend
 
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)
+
 ## Описание
 
-Этот проект представляет собой клиентскую сторону сервиса поиска кино Movies Explorer. Он включает в себя возможности аутентификации пользователей, добавления кинофильмов в избранное и выполнения поиска по ключевым словам.
+Movies Explorer - проект представляет собой клиентскую сторону сервиса поиска кино. Он включает в себя возможности аутентификации пользователей, добавления
+кинофильмов в избранное и выполнения поиска по ключевым словам с последующим сохранением лучших фильмов в избранную коллекцию.
 
-REST API для аутентификации пользователей и сохранения фильмов в избранном: (https://github.com/TIPDMR/movies-explorer-api)
+___
 
-Макет Figma: https://www.figma.com/file/MCORX7I5oijg4qtwCnVFtZ/Diploma?type=design&node-id=891-3857&mode=design
+## Установка и запуск приложения
 
-Адрес домена сервера: https://api.movies.best-mesto.ru
+1. Клонируйте репозиторий на ваш компьютер.
 
-Адрес размещения фронтенда на сервере: https://movies.best-mesto.ru
+```git clone https://github.com/TIPDMR/movies-explorer-frontend```
 
-Ссылка на Pull requests/level-2/Frontend часть платформы Movies Explore: https://github.com/TIPDMR/movies-explorer-frontend/pull/1
+2. Установка зависимостей проекта. У вас должен быть установлен **NodeJS** и **NPM**
 
-Ссылка на Pull requests/level-3/Функциональность на «React» и JS: https://github.com/TIPDMR/movies-explorer-frontend/pull/2
+```cd movies-explorer-frontend npm install```
 
+3. Настройка URI адреса Backend части
+
+  1. Откройте файл `src/constants/constApiUri.js`
+
+  2. Измените переменную `MAIN_API_URI` на адрес сервера где установлен [Movies REST API](https://github.com/TIPDMR/movies-explorer-api)
+
+4. Запуск проекта
+
+```npm run start```
+
+5. Сборка проекта для публикации на удаленном сервере
+
+```npm run build```
+___
+
+## Ссылки
+
+### Макет Figma:
+Предоставляет общее представление о том, как будет выглядеть Frontend часть приложения.
+
+<https://www.figma.com/file/MCORX7I5oijg4qtwCnVFtZ/Diploma?type=design&node-id=891-3857&mode=design>
+
+### Backend на github:
+Этот API обеспечивает функциональность поиска фильмов и управления пользовательскими коллекциями.
+
+<https://github.com/TIPDMR/movies-explorer-api>
+
+### Ссылка на Backend:
+Это домен, к которому клиентская часть приложения будет отправлять запросы для получения данных.
+
+<https://api.movies.best-mesto.ru>
+
+### Ссылка Frontend:
+Здесь пользователи смогут взаимодействовать с интерфейсом для поиска фильмов и управления своими коллекциями.
+
+<https://movies.best-mesto.ru>
