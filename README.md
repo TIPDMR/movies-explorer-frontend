@@ -28,7 +28,10 @@ ___
 
     1. Откройте файл `src/constants/constApiUri.js`
 
-    2. Измените переменную `MAIN_API_URI` на адрес сервера где установлен [Movies REST API](https://github.com/TIPDMR/movies-explorer-api)
+    2. Измените значение переменной `NODE_ENV` с `prod` на `development` если вы хотите включить режим `React.StrictMode` и переменную `MAIN_API_URI` с `//localhost:3001` на адрес
+     сервера backend. Рекомендуется использовать тока во время разработки приложения.
+
+    3. Измените значение переменной `MAIN_API_URI` c `//api.movies.best-mesto.ru` на на адрес сервера где установлен [Movies REST API](https://github.com/TIPDMR/movies-explorer-api)
 
 4. Запуск проекта
 
@@ -42,21 +45,25 @@ ___
 ## Ссылки
 
 ### Макет Figma:
+
 Предоставляет общее представление о том, как будет выглядеть Frontend часть приложения.
 
 <https://www.figma.com/file/MCORX7I5oijg4qtwCnVFtZ/Diploma?type=design&node-id=891-3857&mode=design>
 
 ### Backend на Github:
+
 Этот API обеспечивает функциональность поиска фильмов и управления пользовательскими коллекциями.
 
 <https://github.com/TIPDMR/movies-explorer-api>
 
 ### Ссылка на Backend:
+
 Это домен, к которому клиентская часть приложения будет отправлять запросы для получения данных.
 
 <https://api.movies.best-mesto.ru>
 
 ### Ссылка Frontend:
+
 Здесь пользователи смогут взаимодействовать с интерфейсом для поиска фильмов и управления своими коллекциями.
 
 <https://movies.best-mesto.ru>
