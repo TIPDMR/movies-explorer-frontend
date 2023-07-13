@@ -46,13 +46,16 @@ function App() {
   const knownRoutesPathsArrayFooter = ['/', '/movies', '/saved-movies'];
 
   useEffect(() => {
-    MainApi.getUserInfo().then((res) => {
-      if (res && res.email) {
-        handleAuthorization(res.email, res.name, res._id);
-        navigate(location.pathname);
-      }
-    }).catch((err) => console.log(err));
-  }, []);
+    if (!isLoggedIn) {
+      MainApi.getUserInfo().then((res) => {
+        if (res && res.email) {
+          handleAuthorization(res.email, res.name, res._id);
+          navigate(location.pathname);
+        }
+      }).catch((err) => console.log(err));
+    }
+  }, [isLoggedIn]);
+
 
   const getAllMovies = () => {
     let localFavoriteMovieList = JSON.parse(localStorage.getItem("favoriteMovieList")) || [];
